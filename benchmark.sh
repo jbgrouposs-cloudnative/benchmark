@@ -32,6 +32,6 @@ if [ "$param" == "start" ]; then
     logdir=`ls -lst /root/.tsung/log/ |grep root |head -n 1 |awk '{print $10}'`
     cd $HTMLDIR
     rm -rf ./*
-    tsung_stats.pl --stats $LOG_BASE_DIR/$logdir/tsung.log
+    tsung_stats.pl --dygraph --stats $LOG_BASE_DIR/$logdir/tsung.log
     echo 
 fi
