@@ -18,7 +18,7 @@ SCRIPT_DIR="$(abs_dirname "$0")"
 
 param=$1
 HTMLDIR=/var/www/html/logs
-LOG_BASE_DIR=/root/.tsung/log
+#LOG_BASE_DIR=/root/.tsung/log
 CONFIG=$SCRIPT_DIR/conf/benchmark.xml
 
 if [[ $# -ne 1 ]]; then
@@ -26,12 +26,11 @@ if [[ $# -ne 1 ]]; then
     exit 1
 fi
 
-tsung -f $CONFIG $param
+tsung -l $HTMLDIR -f $CONFIG $param
 
 if [ "$param" == "start" ]; then
-    logdir=`ls -lst /root/.tsung/log/ |grep root |head -n 1 |awk '{print $10}'`
-    cd $HTMLDIR
-    rm -rf ./*
-    tsung_stats.pl --dygraph --stats $LOG_BASE_DIR/$logdir/tsung.log
+    logdir=`ls -lst ${HTMLDIR}/ |grep root |head -n 1 |awk '{print $10}'`
+    cd $HTMLDIR/$logdir
+    tsung_stats.pl --dygraph --stats ./tsung.log
     echo 
 fi
