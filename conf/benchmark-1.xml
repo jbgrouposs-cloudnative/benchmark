@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE tsung SYSTEM "/usr/share/tsung/tsung-1.0.dtd">
+<tsung loglevel="notice" version="1.0">
+
+  <!-- Client side setup -->
+  <clients>
+    <client host="localhost" use_controller_vm="true"/>
+  </clients>
+
+  <!-- http://circle-deploytest.japaneast.cloudapp.azure.com/api/articles -->
+  <!-- Server side setup -->
+  <servers>
+    <server host="circle-deploytest.japaneast.cloudapp.azure.com" port="80" type="tcp"></server>
+  </servers>
+
+  <load duration="15" unit="minute">
+    <arrivalphase phase="1">
+      <users arrivalrate="1"  unit="second"></users>
+    </arrivalphase>
+  </load>
+
+  <sessions>
+    <session name="session" probability="100" type="ts_http">
+      <transaction name="getArticle">
+        <request><http url="/api/articles/2c3322a2-e85b-498f-9773-d420e6b4c064" method="GET" version="1.1" content_type="application/json"></http></request>
+      </transaction>
+    </session>
+  </sessions>
+</tsung>
