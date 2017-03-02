@@ -10,7 +10,7 @@
   <!-- http://circle-deploytest.japaneast.cloudapp.azure.com/api/articles -->
   <!-- Server side setup -->
   <servers>
-    <server host="circleapi.japaneast.cloudapp.azure.com" port="80" type="tcp"></server>
+    <server host="circle-api.japaneast.cloudapp.azure.com" port="80" type="tcp"></server>
   </servers>
 
   <load duration="15" unit="minute">
